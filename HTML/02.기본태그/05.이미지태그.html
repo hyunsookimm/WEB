@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 태그</title>
+</head>
+<body>
+    <!-- 
+        <img> 
+        - src                 : 이미지 파일 경로
+        - width/height        : 가로/세로 크기 지정
+        - alt                 : 대체 텍스트
+        - border              : 테투리 굵기 지정(px)
+    -->
+    <h1>이미지 태그</h1>
+    <h2>로컬 이미지 불러오기(상대경로)</h2>
+    <div>
+        <h2>티셔츠</h2>
+        <img src="img/티셔츠.jpg" alt="티셔츠" width="100" height="100" title="티셔츠" />
+    </div>
+    <div>
+        <h2>바지</h2>
+        <img src="img/바지.jpg" alt="바지" width="100" height="100" title="바지" />
+    </div>
+    <div>
+        <h2>신발</h2>
+        <img src="img/신발.jpg" alt="신발" width="100" height="100" title="신발" />
+    </div>
+
+    <hr>
+
+    <h2>로컬 이미지 불러오기(절대 경로)</h2>
+    <div>
+        <h2>티셔츠</h2>
+        <img src="C:/KHS0512/WEB/HTML/02.기본태그/img/티셔츠.jpg" alt="티셔츠" width="200" height="200" title="티셔츠" />
+    </div>
+
+    <hr>
+
+    <h2>이미지 URL 로 지정하기(절대 경로)</h2>
+
+    <div>
+        <h2>내가 좋아하는 이미지</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAT3idrgN5RSWX7eKeikneIxM5vyMjhC_s6Q&s"
+        alt="축구 이미지"
+        title=" 축구 이미지"
+        width="300"
+        border="3"
+        >
+    </div>
+
+    <hr>
+
+    <h2>이미지가 없을 때</h2>
+    <p>alt 텍스트가 화면에 표시됩니다.</p>
+    <img src="img/없는이미지.png" alt="이미지 없음" title="이미지 없음">
+
+    <div style="height: 500px;"></div>
+    
+
+
+
+</body>
+</html>
