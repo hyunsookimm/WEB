@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    gap: 50px;
+}
+
+.mask {
+    width: 300px;
+    height: 300px;
+    background-image: url("../img/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.star {
+clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.heart {
+clip-path: polygon(51% 32%, 89% 0, 100% 42%, 78% 81%, 50% 100%, 19% 78%, 0 37%, 16% 0);
+}
+
+.my {
+clip-path: polygon(0 30%, 67% 93%, 25% 100%, 21% 39%, 38% 99%, 100% 9%, 0 63%, 25% 100%, 95% 91%, 36% 41%);
+}
