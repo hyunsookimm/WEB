@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>댓글</title>
+    <style>
+       body {
+        margin: 0;
+        padding: 20px;
+        color: #333;
+      }
+        h2 { margin: 0; padding: 0; font-weight: bold;}
+
+       
+        input {
+         width: 450px;
+         padding: 10px;
+         font-size: 10px;
+         box-sizing: content-box
+        }
+        .input-box {
+          margin-bottom: 10px;
+        }
+       .container {
+        padding: 150px;
+        width: 180px;
+        background-color: #b4b4b4;
+        margin-top: 30px;
+       }
+        button {
+        padding: 10px 16px;
+        font-size: 14px;
+        border: none;
+        margin-left: 410px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.2s;
+        border-radius: 10px;
+        background-color: rgb(223, 221, 221);
+        color: rgb(120, 182, 252);
+        }
+    </style>
+</head>
+<body>
+    <h2>댓글 목록</h2>
+    <div class="container"></div>
+    <h3>댓글 작성</h3>
+     <div class="input-box">
+        <input type="text" id="writer" placeholder="이름">
+     </div>
+     <div class="input-box">
+        <input type="text" id="content" placeholder="내용을 작성해주세요.">
+     </div>
+     <div>
+      <button id="btn">작성</button>
+      <div id="commentList"></div>
+     </div>
+     <script>
+        const $btnBtn = document.getElementById('btn')
+        $btnBtn.addEventListener("click",() => {
+            const writer = document.getElementById("writer").value
+            const content = document.getElementById("content").value
+
+            
+        })
+        
+
+
+     </script>
+</body>
+</html>

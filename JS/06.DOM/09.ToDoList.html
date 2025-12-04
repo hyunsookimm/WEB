@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDoList</title>
+  <!-- material icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: "Pretendard", sans-serif;
+      background: #f4f6f6;
+      color: #333;
+    }
+    h1, h3 {
+      margin: 10px 0;
+      font-weight: 600;
+      color: #444;
+    }
+    #input {
+      width: 250px;
+      padding: 10px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 16px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+      border-radius: 6px;
+    }
+    #create {
+      background: #4caf50;
+      color: white;
+    }
+    #create:hover { background: #3a9240; }
+
+    #remove {
+      background: #f44336;
+      color: white;
+      margin-left: 5px;
+    }
+    #remove:hover { background: #d7362a; }
+
+    ul { padding-left: 0; margin-top: 15px; }
+    li {
+      list-style: none;
+      background: white;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+      transition: 0.2s;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.3);
+      cursor: pointer;
+    }
+
+    #complete li {
+      background: #e8ffe8;
+      color: #3f7f3f;
+      font-weight: 600;
+      text-decoration: line-through;
+    }
+
+    #complete li .text {
+      text-decoration: line-through;
+    }
+
+    hr {
+      margin: 25px 0;
+      border: none;
+      border-bottom: 1px solid #ddd;
+    }
+    .delete { 
+        cursor: pointer;
+        display: inline-block;
+        padding: 4px;
+        border-radius: 50%;
+        background: #f44336;
+        color: white;
+        text-decoration: none;
+    }
+  </style>
+  <script>
+    // createElement() 로 요소 생성
+    const h3 = document.createElement('h3')
+    h3.textContent = '할일을 작성해주세요.'
+    // ➡ <h3>할일을 작성해주세요</h3>
+
+    
+    // 문서 준비 이벤트
+    document.addEventListener("DOMContentLoaded" ,() => {
+      // 자식요소 추가하기
+      // 선택요소.appendChild(추가요소)
+      // : 선택요소의 자식요소를 맨 마지막에 추가하는 메소드
+      // 선택요소.prepend(추가요소)
+      // : 선택요소의 자식요소를 맨 앞에 추가하는 메소드
+      document.body.prepend(h3)
+
+      // 요소 생성
+      const li = document.createElement("li")
+      // 텍스트 노드 생성
+      const text = document.createTextNode("첫번째 할일")
+      // 속성 노드 생성
+      const textStyle = document.createAttribute("style")
+      textStyle.value = 'color : orange'
+      
+      li.appendChild(text)
+      li.setAttributeNode(textStyle)
+      li.append("입니다.")
+      // <li style="color:orange">첫번째 할일입니다.</li>
+
+      // <ul id="list"> ⬅ <li> 추가
+      const ul = document.getElementById("list")
+      ul.appendChild(li)
+
+      // 버튼 및 입력 태그 선택
+      // [추가] : create
+      // [삭제] : remove
+      // (입력) : input
+      const btnCreate = document.getElementById("create")
+      const btnRemove = document.getElementById("remove")
+      const input = document.getElementById("input")
+
+      // 이벤트 핸들러 추가
+      // addEventListener( 이벤트타입, 콜백함수 )
+      btnCreate.addEventListener("click", add )
+      btnRemove.addEventListener("click", remove )
+      input.addEventListener("keyup", enter )
+
+      // 할일 추가 기능
+      function add() {
+        const ul = document.getElementById("list")
+        const li = document.createElement("li")
+        const input = document.getElementById("input")
+        const textNode = document.createElement('span')
+        const text = document.createTextNode(input.value)
+        textNode.className= 'text'
+        textNode.appendChild(text)
+
+        // ✅ 체크 박스 추가
+        const checkbox = document.createElement("input")
+        checkbox.type = 'checkbox'    // ✅
+        // ❌ 아이콘 추가
+        const removeIcon = document.createElement("span")
+        removeIcon.className = 'material-icons delete'
+        removeIcon.textContent = 'delete'
+
+        li.appendChild(checkbox)      // <li>✅
+        li.appendChild(textNode)          // <li>✅입력내용
+        li.appendChild(removeIcon)    //<li>✅입력내용❌
+        ul.appendChild(li)            // <ul><li>✅입력내용❌
+        input.value = ''              // 입력상자 비우기
+        input.focus()                 
+
+        // ✅ 체크 박스 클릭 이벤트
+        checkbox.addEventListener("change", () => {
+          // checkbox.checked : 체크여부 ✅ true, 🟩 false
+          const completeList = document.getElementById("complete")
+
+          if( checkbox.checked ) {
+            // li.style.textDecoration = 'line-through' // 취소선
+            completeList.appendChild(li)
+          } else {
+            li.style.textDecoration = 'none'
+            ul.appendChild(li)
+          }
+        })
+
+        // 삭제 클릭 이벤트
+        removeIcon.addEventListener("click", () => {
+          li.remove()
+        })
+      }
+
+        // 키보드 엔터 입력
+        function enter(event) {
+           // event.keycode : (13) 엔터키를 가리킨다
+           console.log(event.keyCode);
+           if( event.keyCode == 13 ) {
+            add ()
+           }
+           
+      }
+
+      // 전체삭제
+      function remove() {
+        const ul = document.getElementById("list")
+        const completeList = document.getElementById("compelte")
+        ul.innerHTML = ''
+        completeList.innerHTML = ''
+      }
+    })
+  </script>
+</head>
+<body>
+  <h3>To Do List</h3>
+  <input type="text" name="input" id="input" placeholder="입력하세요">
+  <button id="create">추가</button>
+  <button id="remove">삭제</button>
+  <ul id="list"></ul>
+  <hr>
+  <h3>완료한 일</h3>
+  <ul id="complete"></ul>
+</body>
+</html>
